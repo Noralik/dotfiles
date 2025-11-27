@@ -5,19 +5,26 @@
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
-    "height": 40, /* Фиксированная высота для аккуратности */
-    
+    "height": 40,
+
     "modules-left": ["custom/start", "clock", "hyprland/workspaces", "custom/cava", "custom/prev", "mpris", "custom/next"],
     "modules-center": ["hyprland/window"],
     "modules-right": ["custom/wallpaper", "network", "cpu", "memory", "pulseaudio", "hyprland/language", "battery", "tray"],
 
     "hyprland/window": {
-        "format": "{class}", 
+        "format": "{class}",
         "max-length": 20,
         "rewrite": {
             "": "Hyprland"
         }
     },
+
+    "custom/start": {
+        "format": " ",
+        "on-click": "rofi -show drun -theme ~/.config/rofi/style.rasi",
+        "tooltip": "Меню приложений"
+    },
+
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
@@ -38,20 +45,18 @@
             "*": 5
         }
     },
-    
-    // --- ОБОИ ---
+
     "custom/wallpaper": {
         "format": " ",
         "on-click": "~/.local/bin/wallselect",
         "tooltip": "Выбрать обои"
     },
 
-    // --- МУЗЫКА ---
     "custom/cava": {
-    	"exec": "~/.local/bin/launch_cava",
-    	"format": "{}",
-    	"tooltip": false,
-    	"on-click": "pavucontrol"
+        "exec": "~/.local/bin/launch_cava",
+        "format": "{}",
+        "tooltip": false,
+        "on-click": "pavucontrol"
     },
 
     "custom/prev": {
@@ -59,25 +64,27 @@
         "on-click": "playerctl previous",
         "tooltip": false
     },
+
     "custom/next": {
         "format": "",
         "on-click": "playerctl next",
         "tooltip": false
     },
+
     "mpris": {
         "format": "{artist} - {title}",
         "format-paused": "⏸ {title}",
-        "max-length": 20, /* Ограничиваем длину названия песни */
+        "max-length": 20,
         "ignored-players": ["firefox"]
     },
 
-    // --- СИСТЕМА ---
     "cpu": {
         "interval": 10,
         "format": " {usage}%",
         "max-length": 10,
         "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
     },
+
     "memory": {
         "interval": 30,
         "format": " {}%",
@@ -85,7 +92,6 @@
         "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
     },
 
-    // --- СЕТЬ И ЗВУК ---
     "network": {
         "interval": 2,
         "format-wifi": "{icon}  {bandwidthDownBytes}",
@@ -95,10 +101,12 @@
         "format-disconnected": "⚠",
         "format-alt": "{ifname}: {ipaddr}"
     },
+
     "clock": {
         "format": " {:%H:%M}",
         "tooltip-format": " {:%Y-%m-%d}"
     },
+
     "pulseaudio": {
         "format": "{icon} {volume}%",
         "format-muted": "",
@@ -110,12 +118,14 @@
             "default": ["", "", ""]
         }
     },
+
     "hyprland/language": {
         "format": " {}",
         "format-en": "EN",
         "format-ru": "RU",
         "format-uk": "UA"
     },
+
     "battery": {
         "states": {
             "good": 95,
@@ -127,13 +137,9 @@
         "format-plugged": " {capacity}%",
         "format-icons": ["", "", "", "", ""]
     },
+
     "tray": {
         "icon-size": 14,
         "spacing": 8
     }
-    "custom/start": {
- 	"format": " ",  // Или поставь иконку винды " "
-	"on-click": "rofi -show drun -theme ~/.config/rofi/style.rasi",
-	"tooltip": "Меню приложений"
-    },
 }
