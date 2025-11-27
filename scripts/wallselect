@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Папка с обоями
+WALL_DIR="$HOME/Pictures/Wallpapers"
+
+# 1. Получаем список картинок (jpg, png, jpeg)
+# 2. Показываем их в rofi
+# 3. Сохраняем выбор пользователя в переменную SELECTED
+SELECTED=$(cd "$WALL_DIR" && ls *.jpg *.png *.jpeg 2>/dev/null | rofi -dmenu -p "Обои" -theme ~/.config/rofi/style.rasi)
+
+# Если ничего не выбрали (нажали Esc), выходим
+if [ -z "$SELECTED" ]; then
+    exit 0
+fi
+
+# Применяем обои через твой прошлый скрипт (или команду)
+setwall "$WALL_DIR/$SELECTED"

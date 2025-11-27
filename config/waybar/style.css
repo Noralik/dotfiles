@@ -1,0 +1,163 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 12px; /* Уменьшил шрифт для экономии места */
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+    color: #cdd6f4;
+}
+
+tooltip {
+    background: #1e1e2e;
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #cba6f7;
+}
+
+/* --- ОБЩИЙ СТИЛЬ ДЛЯ ВСЕХ "ОСТРОВКОВ" --- */
+#workspaces,
+#clock,
+#window,
+#network,
+#pulseaudio,
+#battery,
+#cpu,
+#memory,
+#hyprland-language,
+#custom-wallpaper,
+#mpris,
+#custom-cava,
+#custom-prev,
+#custom-next,
+#tray {
+    background: #1e1e2e;
+    opacity: 0.9;
+    padding: 2px 10px; /* Компактные отступы внутри */
+    margin: 4px 2px;   /* Компактные отступы между блоками */
+    border-radius: 15px;
+    border: 2px solid #11111b;
+}
+
+/* --- ВОРКСПЕЙСЫ --- */
+#workspaces {
+    background: #1e1e2e;
+    margin: 4px 2px;
+    padding: 2px 10px;
+    border-radius: 15px;
+    border: 2px solid #11111b;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    color: #585b70; /* Серый цвет для пустых кругов */
+    font-size: 16px; /* Размер кругляшков */
+}
+
+#workspaces button.active {
+    color: #cba6f7; /* Фиолетовый для активного */
+    font-size: 16px;
+}
+
+#workspaces button.urgent {
+    color: #f38ba8; /* Красный, если там важное уведомление */
+}
+
+#workspaces button:hover {
+    background: #313244;
+    border-radius: 15px;
+}
+
+
+/* --- ЦВЕТА МОДУЛЕЙ (Catppuccin) --- */
+
+#clock {
+    color: #fab387; /* Peach */
+    margin-left: 10px; /* Отступ от края экрана */
+}
+
+#window {
+    color: #cdd6f4; /* Белый текст */
+    background: #313244; /* Чуть светлее фон для центра */
+}
+
+#custom-wallpaper {
+    color: #f5c2e7; /* Pink */
+    font-size: 16px;
+    padding-left: 12px; /* Чуть шире под иконку */
+    padding-right: 8px;
+}
+
+#mpris {
+    color: #a6e3a1; /* Green */
+    min-width: 50px;
+}
+
+#custom-prev, #custom-next {
+    color: #cba6f7;
+    padding: 0 8px;
+    font-size: 14px;
+}
+#custom-prev:hover, #custom-next:hover {
+    background: #45475a;
+}
+
+#custom-cava {
+    background: #1e1e2e;
+    color: #89b4fa;
+    /* Уменьшаем боковые отступы, так как сами столбики теперь с пробелами */
+    padding: 0 10px; 
+    margin: 4px 2px;
+    border-radius: 15px;
+    border: 2px solid #11111b;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 16px; /* Сделаем их повыше */
+    font-weight: bold;
+}
+
+#network {
+    color: #89b4fa; /* Blue */
+}
+
+#cpu {
+    color: #f38ba8; /* Red */
+}
+
+#memory {
+    color: #f9e2af; /* Yellow */
+}
+
+#pulseaudio {
+    color: #f5c2e7; /* Pink */
+}
+
+#hyprland-language {
+    color: #94e2d5; /* Teal */
+    padding: 0 8px;
+}
+
+#battery {
+    color: #a6e3a1; /* Green */
+}
+#battery.warning { color: #fab387; }
+#battery.critical { color: #f38ba8; }
+
+#tray {
+    margin-right: 10px; /* Отступ от края экрана */
+}
+
+
+#custom-start {
+    color: #89b4fa; /* Голубой */
+    font-size: 18px;
+    padding: 0 10px;
+    margin-left: 5px;
+}
+#custom-start:hover {
+    color: #cba6f7;
+}

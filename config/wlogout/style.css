@@ -1,0 +1,51 @@
+* {
+	background-image: none;
+}
+
+window {
+	background-color: rgba(30, 30, 46, 0.8); /* Полупрозрачный темный фон */
+}
+
+button {
+    color: #cdd6f4;
+	background-color: #1e1e2e;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 15px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 25%;
+    margin: 5px;
+    transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+button:focus, button:active, button:hover {
+	background-color: #313244;
+	outline-style: none;
+    border-color: #cba6f7; /* Фиолетовая подсветка */
+}
+
+/* Иконки для кнопок (стандартные системные) */
+#lock {
+	background-image: image(url("/usr/share/wlogout/icons/lock.png"));
+}
+
+#logout {
+	background-image: image(url("/usr/share/wlogout/icons/logout.png"));
+}
+
+#suspend {
+	background-image: image(url("/usr/share/wlogout/icons/suspend.png"));
+}
+
+#hibernate {
+	background-image: image(url("/usr/share/wlogout/icons/hibernate.png"));
+}
+
+#shutdown {
+	background-image: image(url("/usr/share/wlogout/icons/shutdown.png"));
+}
+
+#reboot {
+	background-image: image(url("/usr/share/wlogout/icons/reboot.png"));
+}

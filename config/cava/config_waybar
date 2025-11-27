@@ -1,0 +1,24 @@
+[general]
+# Высокий FPS для плавности
+framerate = 144
+# Количество полосок (сделай больше или меньше по вкусу)
+bars = 20
+bar_width = 1
+
+[input]
+method = pulse
+source = auto
+
+[output]
+method = raw
+raw_target = /dev/stdout
+data_format = ascii
+ascii_max_range = 7
+bar_delimiter = 59
+
+[smoothing]
+# Это делает движение "тягучим" и плавным
+integral = 70
+monstercat = 1
+waves = 5
+gravity = 100
