@@ -27,21 +27,40 @@ if ! command -v yay &> /dev/null; then
 fi
 
 # 3. ПОЛНЫЙ СПИСОК ПАКЕТОВ
-# Здесь всё, что мы настраивали
 echo -e "${GREEN}Установка программ...${NC}"
 PKGS=(
-    # Графика и база
+    # --- ГРАФИЧЕСКАЯ БАЗА ---
     hyprland waybar kitty rofi-wayland sddm
-    
-    # Красота
-    swww hyprlock hypridle wlogout dunst starship fastfetch
-    ttf-jetbrains-mono-nerd ttf-font-awesome
-    qt5-graphicaleffects qt5-quickcontrols2 qt5-svg # Нужны для тем sddm/rofi
 
-    # Утилиты
-    pavucontrol playerctl btop cava zram-generator
-    grim slurp wl-clipboard libnotify network-manager-applet
-    thunar
+    # --- ФАЙЛЫ, ТЕЛЕФОН И ПРОСМОТР ---
+    thunar                  # Файловый менеджер
+    thunar-archive-plugin   # Чтобы в Thunar работали архивы (ZIP/RAR)
+    file-roller             # Программа-архиватор
+    gvfs gvfs-mtp           # "Мозги" для флешек и подключения Android по кабелю
+    viewnior                # Легкий просмотр картинок
+    kdeconnect              # Беспроводная связь с телефоном (файлы, буфер обмена)
+    filezilla               # FTP-клиент (для сложных задач)
+
+    # --- КРАСОТА И ОФОРМЛЕНИЕ ---
+    swww                    # Демон обоев
+    hyprlock hypridle       # Экран блокировки и авто-сон
+    wlogout                 # Красивое меню выхода
+    dunst                   # Уведомления
+    starship fastfetch      # Стиль терминала
+    ttf-jetbrains-mono-nerd # Главный шрифт с иконками (ОБЯЗАТЕЛЬНО)
+    ttf-font-awesome        # Доп. иконки для Waybar
+    qt5-graphicaleffects qt5-quickcontrols2 qt5-svg # Библиотеки, чтобы темы SDDM не ломались
+
+    # --- ПОЛЕЗНЫЕ УТИЛИТЫ ---
+    pavucontrol             # Настройка звука (GUI)
+    playerctl               # Управление плеером (кнопки Назад/Вперед)
+    cava                    # Эквалайзер
+    btop                    # Диспетчер задач (нагрузка CPU/RAM)
+    zram-generator          # Оптимизация памяти (чтобы комп не зависал)
+    grim slurp              # Инструменты для скриншотов
+    wl-clipboard            # Работа буфера обмена (Ctrl+C / Ctrl+V)
+    libnotify               # Чтобы скрипты могли слать уведомления
+    network-manager-applet  # Иконка Wi-Fi в трее
 )
 
 for pkg in "${PKGS[@]}"; do
@@ -65,6 +84,12 @@ Session=hyprland" | sudo tee /etc/sddm.conf.d/autologin.conf > /dev/null
 yay -S --noconfirm sddm-catppuccin-git
 echo "[Theme]
 Current=catppuccin" | sudo tee /etc/sddm.conf > /dev/null
+
+# --- НАСТРОЙКА ZRAM (Сжатие памяти) ---
+echo -e "${GREEN}Настройка оптимизации памяти (ZRAM)...${NC}"
+echo "[zram0]
+zram-size = min(ram, 8192)
+compression-algorithm = zstd" | sudo tee /etc/systemd/zram-generator.conf > /dev/null
 
 # 5. Копирование конфигов
 echo -e "${GREEN}Применяем настройки (Dotfiles)...${NC}"

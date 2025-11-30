@@ -55,24 +55,25 @@ tooltip {
 
 #workspaces button {
     padding: 0 5px;
-    color: #585b70; /* Серый цвет для пустых кругов */
-    font-size: 16px; /* Размер кругляшков */
+    color: #585b70; /* СЕРЫЙ (для неактивных) */
+    background: transparent;
+    font-size: 16px;
+    transition: all 0.3s ease; /* Плавная анимация цвета */
 }
 
 #workspaces button.active {
-    color: #cba6f7; /* Фиолетовый для активного */
+    color: #cba6f7; /* ФИОЛЕТОВЫЙ (для активного) */
     font-size: 16px;
 }
 
 #workspaces button.urgent {
-    color: #f38ba8; /* Красный, если там важное уведомление */
+    color: #f38ba8; /* КРАСНЫЙ (если важное уведомление) */
 }
 
 #workspaces button:hover {
     background: #313244;
-    border-radius: 15px;
+    color: #cdd6f4;
 }
-
 
 /* --- ЦВЕТА МОДУЛЕЙ (Catppuccin) --- */
 
