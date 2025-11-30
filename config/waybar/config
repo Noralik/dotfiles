@@ -29,7 +29,7 @@
         "disable-scroll": true,
         "all-outputs": true,
         "active-only": false,
-        "on-click": "activate",
+        //"on-click": "activate",
         "format": "{icon}",
         "format-icons": {
             "1": "",

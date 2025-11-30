@@ -53,26 +53,36 @@ tooltip {
     border: 2px solid #11111b;
 }
 
+/* Стиль самих кнопок */
 #workspaces button {
     padding: 0 5px;
-    color: #585b70; /* СЕРЫЙ (для неактивных) */
+    color: #585b70; /* Серый для неактивных */
     background: transparent;
     font-size: 16px;
-    transition: all 0.3s ease; /* Плавная анимация цвета */
+    border-radius: 15px;
+    /* ВОТ ЭТО ДЕЛАЕТ АНИМАЦИЮ ПЛАВНОЙ */
+    transition: all 0.3s ease; 
 }
 
+/* Активный стол */
 #workspaces button.active {
-    color: #cba6f7; /* ФИОЛЕТОВЫЙ (для активного) */
+    color: #cba6f7; /* Фиолетовый */
+    background: transparent; /* Можно сделать #313244 если хочешь фон у активного */
     font-size: 16px;
+    min-width: 40px; /* Чуть шире активный */
+    background-size: 400% 400%;
+}
+
+/* Анимация при наведении (HOVER) */
+#workspaces button:hover {
+    background: #313244; /* Появляется темный фон */
+    color: #cdd6f4;      /* Иконка белеет */
+    border-radius: 15px; /* Скругление фона */
+    min-width: 40px;     /* Кнопка чуть расширяется */
 }
 
 #workspaces button.urgent {
-    color: #f38ba8; /* КРАСНЫЙ (если важное уведомление) */
-}
-
-#workspaces button:hover {
-    background: #313244;
-    color: #cdd6f4;
+    color: #f38ba8;
 }
 
 /* --- ЦВЕТА МОДУЛЕЙ (Catppuccin) --- */
