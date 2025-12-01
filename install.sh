@@ -61,6 +61,10 @@ PKGS=(
     wl-clipboard            # Работа буфера обмена (Ctrl+C / Ctrl+V)
     libnotify               # Чтобы скрипты могли слать уведомления
     network-manager-applet  # Иконка Wi-Fi в трее
+
+    # --- УТИЛИТЫ ФАЙЛОВОЙ СИСТЕМЫ ---
+    dosfstools
+    ntfs-3g
 )
 
 for pkg in "${PKGS[@]}"; do
