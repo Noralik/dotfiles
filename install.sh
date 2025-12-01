@@ -65,6 +65,16 @@ PKGS=(
     # --- УТИЛИТЫ ФАЙЛОВОЙ СИСТЕМЫ ---
     dosfstools
     ntfs-3g
+
+    # --- УЛУЧШЕНИЯ ИНТЕРФЕЙСА ---
+    nwg-look                # Настройка темы GTK
+    catppuccin-gtk-theme-mocha # Темная тема окон
+    
+    # --- УТИЛИТЫ ---
+    cliphist                # История буфера обмена (как Win+V)
+    hyprpicker              # Пипетка цвета
+    kooha                   # Запись экрана
+    dosfstools ntfs-3g      # (То, что мы чинили для дисков)
 )
 
 for pkg in "${PKGS[@]}"; do
