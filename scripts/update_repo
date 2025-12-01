@@ -4,14 +4,27 @@ DOTFILES="$HOME/dotfiles"
 echo "Обновляем репозиторий..."
 
 # 1. Конфиги
+# Основные
 cp -r ~/.config/hypr "$DOTFILES/config/"
 cp -r ~/.config/waybar "$DOTFILES/config/"
 cp -r ~/.config/kitty "$DOTFILES/config/"
 cp -r ~/.config/rofi "$DOTFILES/config/"
-cp -r ~/.config/cava "$DOTFILES/config/"
 cp -r ~/.config/wlogout "$DOTFILES/config/"
 cp -r ~/.config/dunst "$DOTFILES/config/"
+cp -r ~/.config/fastfetch "$DOTFILES/config/"
 cp ~/.config/starship.toml "$DOTFILES/config/"
+
+# Мультимедиа
+cp -r ~/.config/cava "$DOTFILES/config/"
+cp -r ~/.config/btop "$DOTFILES/config/" 2>/dev/null
+
+# Темы и Файловый менеджер (ВАЖНО для сохранения темной темы)
+cp -r ~/.config/gtk-3.0 "$DOTFILES/config/" 2>/dev/null
+cp -r ~/.config/gtk-4.0 "$DOTFILES/config/" 2>/dev/null
+cp -r ~/.config/nwg-look "$DOTFILES/config/" 2>/dev/null
+cp -r ~/.config/xsettingsd "$DOTFILES/config/" 2>/dev/null
+cp -r ~/.config/Thunar "$DOTFILES/config/" 2>/dev/null
+cp -r ~/.config/xfce4 "$DOTFILES/config/" 2>/dev/null # Тут хранятся настройки Thunar
 
 # 2. Скрипты
 cp ~/.local/bin/* "$DOTFILES/scripts/"
