@@ -61,6 +61,7 @@ PKGS=(
     wl-clipboard            # Работа буфера обмена (Ctrl+C / Ctrl+V)
     libnotify               # Чтобы скрипты могли слать уведомления
     network-manager-applet  # Иконка Wi-Fi в трее
+    chafa 		    # Kitty
 
     # --- УТИЛИТЫ ФАЙЛОВОЙ СИСТЕМЫ ---
     dosfstools
