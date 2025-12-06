@@ -1,10 +1,23 @@
 #!/bin/bash
 
 DOTFILES="$HOME/dotfiles"
-echo "Обновляем репозиторий..."
+echo "🧹 Чистим старые копии в репозитории..."
+
+# Удаляем старые папки конфигов и ассетов в репозитории,
+# чтобы не копился мусор (удаленные файлы)
+rm -rf "$DOTFILES/config"
+rm -rf "$DOTFILES/assets"
+rm -rf "$DOTFILES/scripts"
+
+# Создаем структуру заново
+mkdir -p "$DOTFILES/config"
+mkdir -p "$DOTFILES/assets/Wallpapers"
+mkdir -p "$DOTFILES/assets/Wallkitty"
+mkdir -p "$DOTFILES/scripts"
+
+echo "📂 Копируем свежие настройки..."
 
 # 1. Конфиги
-# Основные
 cp -r ~/.config/hypr "$DOTFILES/config/"
 cp -r ~/.config/waybar "$DOTFILES/config/"
 cp -r ~/.config/kitty "$DOTFILES/config/"
@@ -14,29 +27,26 @@ cp -r ~/.config/dunst "$DOTFILES/config/"
 cp -r ~/.config/fastfetch "$DOTFILES/config/"
 cp ~/.config/starship.toml "$DOTFILES/config/"
 
-# Мультимедиа
+# Мультимедиа и утилиты
 cp -r ~/.config/cava "$DOTFILES/config/"
 cp -r ~/.config/btop "$DOTFILES/config/" 2>/dev/null
 
-# Темы и Файловый менеджер (ВАЖНО для сохранения темной темы)
+# Темы и Thunar
 cp -r ~/.config/gtk-3.0 "$DOTFILES/config/" 2>/dev/null
 cp -r ~/.config/gtk-4.0 "$DOTFILES/config/" 2>/dev/null
 cp -r ~/.config/nwg-look "$DOTFILES/config/" 2>/dev/null
 cp -r ~/.config/xsettingsd "$DOTFILES/config/" 2>/dev/null
 cp -r ~/.config/Thunar "$DOTFILES/config/" 2>/dev/null
-cp -r ~/.config/xfce4 "$DOTFILES/config/" 2>/dev/null # Тут хранятся настройки Thunar
+cp -r ~/.config/xfce4 "$DOTFILES/config/" 2>/dev/null
 
 # 2. Скрипты
 cp ~/.local/bin/* "$DOTFILES/scripts/"
 
-# 3. Обои рабочего стола
-cp -r ~/Pictures/Wallpapers "$DOTFILES/assets/"
-
-# 4. !!! НОВОЕ: Фон терминала !!!
-mkdir -p "$DOTFILES/assets/Wallkitty"
+# 3. Обои (Теперь скопируется ровно то, что есть у тебя, без старого мусора)
+cp -r ~/Pictures/Wallpapers/* "$DOTFILES/assets/Wallpapers/"
 cp -r ~/Pictures/Wallkitty/* "$DOTFILES/assets/Wallkitty/" 2>/dev/null
 
-echo "Файлы собраны!"
+echo "✅ Файлы синхронизированы!"
 
 # Отправка в Git
 read -p "Отправить на GitHub? (y/n): " choice
@@ -46,6 +56,7 @@ if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
     echo "Комментарий к коммиту:"
     read msg
     git commit -m "$msg"
-    git push
-    echo "Успешно отправлено!"
+    # Используем Force Push, чтобы зеркально отразить твой комп на сервере
+    git push -f origin main
+    echo "🚀 Успешно отправлено (Force Push)!"
 fi
