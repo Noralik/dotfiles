@@ -1,17 +1,34 @@
 #!/bin/bash
 
-# Папка с обоями
 WALL_DIR="$HOME/Pictures/Wallpapers"
 
-# 1. Получаем список картинок (jpg, png, jpeg)
-# 2. Показываем их в rofi
-# 3. Сохраняем выбор пользователя в переменную SELECTED
-SELECTED=$(cd "$WALL_DIR" && ls *.jpg *.png *.jpeg 2>/dev/null | rofi -dmenu -p "Обои" -theme ~/.config/rofi/style.rasi)
+# --- ФУНКЦИЯ ПОИСКА И СОРТИРОВКИ ---
+# Мы ищем файлы, а потом сортируем их так:
+# 1. Строки, начинающиеся на "S/", получают высший приоритет
+# 2. Потом "A/", "B/", "C/", "D/"
+# 3. Всё остальное
+get_list() {
+    find "$WALL_DIR" -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.webp" \) | \
+    sed "s|$WALL_DIR/||" | \
+    awk '{
+        # Присваиваем вес каждой папке
+        if ($0 ~ /^S\//)      print "1 " $0;
+        else if ($0 ~ /^A\//) print "2 " $0;
+        else if ($0 ~ /^B\//) print "3 " $0;
+        else if ($0 ~ /^C\//) print "4 " $0;
+        else if ($0 ~ /^D\//) print "5 " $0;
+        else                  print "9 " $0;
+    }' | \
+    sort -k1,1n -k2 | \
+    cut -d ' ' -f2- # Убираем цифру сортировки перед показом
+}
 
-# Если ничего не выбрали (нажали Esc), выходим
+# --- ЗАПУСК МЕНЮ ---
+# Флаг -i делает поиск нечувствительным к регистру (s найдет S)
+SELECTED=$(get_list | rofi -dmenu -p "Choose Wallpaper" -i -theme ~/.config/rofi/style.rasi)
+
 if [ -z "$SELECTED" ]; then
     exit 0
 fi
 
-# Применяем обои через твой прошлый скрипт (или команду)
 setwall "$WALL_DIR/$SELECTED"
