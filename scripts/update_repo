@@ -43,7 +43,7 @@ cp -r ~/.config/xfce4 "$DOTFILES/config/" 2>/dev/null
 cp ~/.local/bin/* "$DOTFILES/scripts/"
 
 # 3. Обои (Теперь скопируется ровно то, что есть у тебя, без старого мусора)
-cp -r ~/Pictures/Wallpapers/* "$DOTFILES/assets/Wallpapers/"
+#cp -r ~/Pictures/Wallpapers/* "$DOTFILES/assets/Wallpapers/"
 cp -r ~/Pictures/Wallkitty/* "$DOTFILES/assets/Wallkitty/" 2>/dev/null
 
 echo "✅ Файлы синхронизированы!"

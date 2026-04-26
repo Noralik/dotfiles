@@ -62,6 +62,7 @@ PKGS=(
     libnotify               # Чтобы скрипты могли слать уведомления
     network-manager-applet  # Иконка Wi-Fi в трее
     chafa 		    # Kitty
+    tree		    # для показа файлов в виде дерево по иерахии
 
     # --- УТИЛИТЫ ФАЙЛОВОЙ СИСТЕМЫ ---
     dosfstools

@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Цвета
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+echo -e "${GREEN}=== УСТАНОВКА STEAM И ДРАЙВЕРОВ ===${NC}"
+
+# Шаг 1: Включение Multilib (обязательно для Steam)
+echo "Проверка репозитория Multilib..."
+
+if grep -q "#\[multilib\]" /etc/pacman.conf; then
+    echo -e "${GREEN}Включаем [multilib] в pacman.conf...${NC}"
+    # Эта магия sed раскомментирует строки [multilib] и следующую за ней
+    sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+    
+    echo "Обновляем базы данных..."
+    sudo pacman -Syu --noconfirm
+else
+    echo "Multilib уже включен."
+fi
+
+# Шаг 2: Установка драйверов (INTEL + 32bit)
+# У тебя Intel HD Graphics, поэтому ставим драйверы Mesa и Vulkan для Intel
+echo -e "${GREEN}Установка драйверов для Intel...${NC}"
+DRIVERS="mesa lib32-mesa vulkan-intel lib32-vulkan-intel"
+
+# Шаг 3: Steam и важные утилиты
+# ttf-liberation - чтобы в Steam был текст, а не квадраты
+# gamemode - оптимизатор процессора для игр
+# mangohud - счетчик FPS
+echo -e "${GREEN}Установка Steam и утилит...${NC}"
+APPS="steam ttf-liberation gamemode lib32-gamemode mangohud lib32-mangohud"
+
+# Установка всего разом
+if sudo pacman -S --needed --noconfirm $DRIVERS $APPS; then
+    echo -e "${GREEN}=== ГОТОВО! ===${NC}"
+    echo "Теперь можешь запускать Steam."
+else
+    echo -e "${RED}Ошибка установки!${NC}"
+fi
