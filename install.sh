@@ -63,7 +63,7 @@ PKGS=(
     network-manager-applet  # Иконка Wi-Fi в трее
     chafa 		    # Kitty
     tree		    # для показа файлов в виде дерево по иерахии
-
+    nwg-displays	    # для монитора
     # --- УТИЛИТЫ ФАЙЛОВОЙ СИСТЕМЫ ---
     dosfstools
     ntfs-3g
@@ -139,6 +139,10 @@ if [ ! -f ~/Pictures/current_wallpaper.jpg ]; then
         cp ~/Pictures/Wallpapers/"$FIRST_WALL" ~/Pictures/current_wallpaper.jpg
     fi
 fi
+
+yay -S tty-clock cmatrix
+yay -S jq
+
 
 echo -e "${GREEN}=== ГОТОВО! ===${NC}"
 echo "Теперь перезагрузи компьютер."
